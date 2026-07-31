@@ -58,8 +58,23 @@ def me():
 @jwt_required()
 def get_notes():
     user_id = int(get_jwt_identity())
-    notes = Note.query.filter_by(user_id=user_id).all()
-    return jsonify([note.to_dict() for note in notes]), 200
+
+    page = request.args.get("page", 1, type=int)
+    per_page = request.args.get("per_page", 10, type=int)
+
+    pagination = Note.query.filter_by(user_id=user_id).paginate(
+        page=page, per_page=per_page, error_out=False
+    )
+
+    notes = [note.to_dict() for note in pagination.items]
+
+    return jsonify({
+        "notes": notes,
+        "total": pagination.total,
+        "page": pagination.page,
+        "per_page": pagination.per_page,
+        "pages": pagination.pages,
+    }), 200
 
 
 @notes_bp.route("/notes", methods=["POST"])
