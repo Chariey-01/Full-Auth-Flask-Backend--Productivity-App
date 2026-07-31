@@ -3,7 +3,7 @@ from flask import Flask
 from config import Config
 from extensions import db, migrate, bcrypt, jwt
 import models  #  (needed so Flask-Migrate can see the models)
-from resources import auth_bp
+from resources import auth_bp, notes_bp
 
 
 def create_app():
@@ -16,6 +16,7 @@ def create_app():
     jwt.init_app(app)
 
     app.register_blueprint(auth_bp)
+    app.register_blueprint(notes_bp)
 
     return app
 
