@@ -2,7 +2,7 @@ from flask import Flask
 
 from config import Config
 from extensions import db, migrate, bcrypt, jwt
-import models  # noqa: F401  (needed so Flask-Migrate can see the models)
+import models  #  (needed so Flask-Migrate can see the models)
 
 
 def create_app():
