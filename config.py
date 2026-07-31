@@ -9,5 +9,5 @@ class Config:
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "super-secret-key-change-me")
-    SECRET_KEY = os.environ.get("SECRET_KEY", "another-secret-key-change-me")
+    JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "super-secret-key-change-me-please-1234")
+    SECRET_KEY = os.environ.get("SECRET_KEY", "another-secret-key-change-me-please-5678")
